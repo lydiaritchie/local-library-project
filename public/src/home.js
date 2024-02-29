@@ -33,11 +33,8 @@ function getMostCommonGenres(books) {
 
 //bookObj is the object that represents each book in the popularBooks array
 function getMostPopularBooks(books) {
-  let popularBooks = [];
-  books.forEach((book) => {
-    let currentBook = book.title;
-    let bookObj = popularBooks.find((aPopularBook) => currentBook === aPopularBook.name);
-    bookObj == undefined ? popularBooks.push({name: currentBook, count: book.borrows.length}) : bookObj.count += book.borrows.length;
+  let popularBooks = books.map((book) => {
+      return { name: book.title, count: book.borrows.length};
   });
   popularBooks = sortArrayByObjCount(popularBooks);
   return popularBooks.slice(0, 5);
